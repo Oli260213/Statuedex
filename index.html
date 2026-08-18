@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StatueDex GO</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+    <div>
+        <h1>🗿 StatueDex GO</h1>
+
+        <p id="status">
+            Finding your location...
+        </p>
+
+        <div id="progress">
+            🗺️ Municipalities:
+            <span id="municipality-count">0 / 19</span>
+
+            &nbsp;•&nbsp;
+
+            🗿 Landmarks:
+            <span id="landmark-count">0 / 38</span>
+        </div>
+    </div>
+
+
+    <div id="header-buttons">
+
+        <button id="places-btn">
+            📍 Places
+        </button>
+
+        <button id="gallery-btn">
+            🖼️ Gallery
+        </button>
+
+        <button id="reset-btn">
+            🔄 Reset Progress
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <div id="map"></div>
+
+
+    <div id="info-panel">
+
+        <h2 id="panel-title">
+            Explore
+        </h2>
+
+        <p id="panel-text">
+            Walk near a tower to unlock its municipality.
+        </p>
+
+        <button id="discover-btn" disabled>
+            📸 Take Photo
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     PLACES
+===================================================== -->
+
+<div id="places-overlay" class="hidden">
+
+    <div id="places-panel">
+
+        <div class="places-header">
+
+            <div>
+                <h2>📍 Places</h2>
+
+                <p id="places-status">
+                    Select a category.
+                </p>
+            </div>
+
+            <button id="close-places">
+                ✕
+            </button>
+
+        </div>
+
+
+        <div id="place-categories">
+
+            <button
+                class="place-category active"
+                data-category="all"
+            >
+                🗺️ All
+            </button>
+
+            <button
+                class="place-category"
+                data-category="library"
+            >
+                📚 Libraries
+            </button>
+
+            <button
+                class="place-category"
+                data-category="restaurant"
+            >
+                🍽️ Restaurants
+            </button>
+
+            <button
+                class="place-category"
+                data-category="cafe"
+            >
+                ☕ Cafés
+            </button>
+
+            <button
+                class="place-category"
+                data-category="toilet"
+            >
+                🚻 Toilets
+            </button>
+
+            <button
+                class="place-category"
+                data-category="museum"
+            >
+                🏛️ Museums
+            </button>
+
+            <button
+                class="place-category"
+                data-category="park"
+            >
+                🌳 Parks
+            </button>
+
+            <button
+                class="place-category"
+                data-category="place_of_worship"
+            >
+                ⛪ Churches
+            </button>
+
+            <button
+                class="place-category"
+                data-category="shop"
+            >
+                🛍️ Shops
+            </button>
+
+            <button
+                class="place-category"
+                data-category="historic"
+            >
+                🏰 Historic
+            </button>
+
+        </div>
+
+
+        <div id="places-list">
+
+            <p class="places-loading">
+                Choose a category to load places.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<div id="gallery-overlay" class="hidden">
+
+    <div id="gallery">
+
+        <div class="gallery-header">
+
+            <h2>🖼️ Photo Gallery</h2>
+
+            <button id="close-gallery">
+                ✕
+            </button>
+
+        </div>
+
+        <div id="gallery-grid"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CAMERA
+===================================================== -->
+
+<input
+    type="file"
+    id="camera-input"
+    accept="image/*"
+    capture="environment"
+    hidden
+>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
