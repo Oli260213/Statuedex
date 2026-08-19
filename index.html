@@ -1,219 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>StatueDex GO</title>
+
+
+    <!-- Leaflet -->
 
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     >
 
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Your CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
     <div>
-        <h1>🗿 StatueDex GO</h1>
+
+        <h1>
+            🗿 StatueDex GO
+        </h1>
+
 
         <p id="status">
             Finding your location...
         </p>
 
+
         <div id="progress">
+
             🗺️ Municipalities:
-            <span id="municipality-count">0 / 19</span>
+
+            <span id="municipality-count">
+                0 / 19
+            </span>
+
 
             &nbsp;•&nbsp;
 
+
             🗿 Landmarks:
-            <span id="landmark-count">0 / 38</span>
+
+            <span id="landmark-count">
+                0 / 38
+            </span>
+
         </div>
+
     </div>
 
 
+    <!-- HEADER BUTTONS -->
+
     <div id="header-buttons">
 
+
         <button id="places-btn">
+
             📍 Places
+
         </button>
+
 
         <button id="gallery-btn">
+
             🖼️ Gallery
+
         </button>
 
+
         <button id="reset-btn">
+
             🔄 Reset Progress
+
         </button>
+
 
     </div>
 
 </header>
 
 
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
 <main>
+
+
+    <!-- MAP -->
 
     <div id="map"></div>
 
 
+    <!-- INFO PANEL -->
+
     <div id="info-panel">
 
+
         <h2 id="panel-title">
+
             Explore
+
         </h2>
 
+
         <p id="panel-text">
+
             Walk near a tower to unlock its municipality.
+
         </p>
 
-        <button id="discover-btn" disabled>
+
+        <button
+            id="discover-btn"
+            disabled
+        >
+
             📸 Take Photo
+
         </button>
 
+
     </div>
+
 
 </main>
 
 
 <!-- =====================================================
-     PLACES
+     PLACES OVERLAY
 ===================================================== -->
 
-<div id="places-overlay" class="hidden">
+<div
+    id="places-overlay"
+    class="hidden"
+>
+
 
     <div id="places-panel">
 
+
+        <!-- PLACES HEADER -->
+
         <div class="places-header">
 
+
             <div>
-                <h2>📍 Places</h2>
+
+
+                <h2>
+                    📍 Places
+                </h2>
+
 
                 <p id="places-status">
+
                     Select a category.
+
                 </p>
+
+
             </div>
 
+
             <button id="close-places">
+
                 ✕
+
             </button>
+
 
         </div>
 
 
+        <!-- =================================================
+             PLACE CATEGORIES
+        ================================================= -->
+
         <div id="place-categories">
+
+
+            <!-- ALL -->
 
             <button
                 class="place-category active"
                 data-category="all"
             >
+
                 🗺️ All
+
             </button>
+
+
+            <!-- LIBRARIES -->
 
             <button
                 class="place-category"
                 data-category="library"
             >
+
                 📚 Libraries
+
             </button>
+
+
+            <!-- RESTAURANTS -->
 
             <button
                 class="place-category"
                 data-category="restaurant"
             >
+
                 🍽️ Restaurants
+
             </button>
+
+
+            <!-- CAFÉS -->
 
             <button
                 class="place-category"
                 data-category="cafe"
             >
+
                 ☕ Cafés
+
             </button>
+
+
+            <!-- TOILETS -->
 
             <button
                 class="place-category"
                 data-category="toilet"
             >
+
                 🚻 Toilets
+
             </button>
+
+
+            <!-- MUSEUMS -->
 
             <button
                 class="place-category"
                 data-category="museum"
             >
+
                 🏛️ Museums
+
             </button>
+
+
+            <!-- PARKS -->
 
             <button
                 class="place-category"
                 data-category="park"
             >
+
                 🌳 Parks
+
             </button>
+
+
+            <!-- CHURCHES -->
 
             <button
                 class="place-category"
                 data-category="place_of_worship"
             >
+
                 ⛪ Churches
+
             </button>
+
+
+            <!-- SHOPS -->
 
             <button
                 class="place-category"
                 data-category="shop"
             >
+
                 🛍️ Shops
+
             </button>
+
+
+            <!-- HISTORIC -->
 
             <button
                 class="place-category"
                 data-category="historic"
             >
+
                 🏰 Historic
+
             </button>
+
 
         </div>
 
+
+        <!-- PLACES LIST -->
 
         <div id="places-list">
 
+
             <p class="places-loading">
+
                 Choose a category to load places.
+
             </p>
+
 
         </div>
 
+
     </div>
+
 
 </div>
 
 
 <!-- =====================================================
-     GALLERY
+     GALLERY OVERLAY
 ===================================================== -->
 
-<div id="gallery-overlay" class="hidden">
+<div
+    id="gallery-overlay"
+    class="hidden"
+>
+
 
     <div id="gallery">
 
+
+        <!-- GALLERY HEADER -->
+
         <div class="gallery-header">
 
-            <h2>🖼️ Photo Gallery</h2>
+
+            <h2>
+                🖼️ Photo Gallery
+            </h2>
+
 
             <button id="close-gallery">
+
                 ✕
+
             </button>
+
 
         </div>
 
+
+        <!-- GALLERY GRID -->
+
         <div id="gallery-grid"></div>
 
+
     </div>
+
 
 </div>
 
@@ -231,9 +407,26 @@
 >
 
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
-<script src="script.js"></script>
+
+<!-- LEAFLET -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+></script>
+
+
+<!-- YOUR JAVASCRIPT -->
+
+<script
+    src="script.js"
+></script>
+
 
 </body>
+
+</html>
 </html>
